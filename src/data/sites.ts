@@ -1,0 +1,142 @@
+import { SiteConfig } from "@/types";
+
+export const sites: SiteConfig[] = [
+  {
+    id: "us",
+    name: "美国站",
+    country: "United States",
+    countryCode: "US",
+    flag: "🇺🇸",
+    currency: "USD",
+    currencySymbol: "$",
+    language: "English",
+    languageCode: "en",
+    themeColor: "#3B82F6",
+    themeGradient: "from-blue-500 to-indigo-600",
+    logistics: {
+      enabled: true,
+      providers: ["UPS", "FedEx", "USPS"],
+      estimatedDays: "3-5 个工作日",
+      tips: "订单满 50 美元免运费",
+    },
+    tax: {
+      enabled: true,
+      rate: 0.08,
+      description: "销售税按收货地税率计算",
+    },
+    status: "active",
+    missingConfigs: [],
+  },
+  {
+    id: "uk",
+    name: "英国站",
+    country: "United Kingdom",
+    countryCode: "GB",
+    flag: "🇬🇧",
+    currency: "GBP",
+    currencySymbol: "£",
+    language: "English",
+    languageCode: "en",
+    themeColor: "#8B5CF6",
+    themeGradient: "from-purple-500 to-pink-600",
+    logistics: {
+      enabled: true,
+      providers: ["Royal Mail", "DHL", "Hermes"],
+      estimatedDays: "2-4 个工作日",
+      tips: "订单满 30 英镑免运费",
+    },
+    tax: {
+      enabled: true,
+      rate: 0.2,
+      description: "增值税 (VAT) 已包含在价格中",
+    },
+    status: "active",
+    missingConfigs: [],
+  },
+  {
+    id: "de",
+    name: "德国站",
+    country: "Germany",
+    countryCode: "DE",
+    flag: "🇩🇪",
+    currency: "EUR",
+    currencySymbol: "€",
+    language: "Deutsch",
+    languageCode: "de",
+    themeColor: "#EF4444",
+    themeGradient: "from-red-500 to-orange-600",
+    logistics: {
+      enabled: true,
+      providers: ["DHL", "Hermes", "DPD"],
+      estimatedDays: "2-3 个工作日",
+      tips: "订单满 40 欧元免运费",
+    },
+    tax: {
+      enabled: true,
+      rate: 0.19,
+      description: "增值税 (MwSt.) 已包含在价格中",
+    },
+    status: "active",
+    missingConfigs: [],
+  },
+  {
+    id: "jp",
+    name: "日本站",
+    country: "Japan",
+    countryCode: "JP",
+    flag: "🇯🇵",
+    currency: "JPY",
+    currencySymbol: "¥",
+    language: "日本語",
+    languageCode: "ja",
+    themeColor: "#F59E0B",
+    themeGradient: "from-amber-500 to-yellow-600",
+    logistics: {
+      enabled: false,
+      providers: [],
+      estimatedDays: "",
+      tips: "",
+    },
+    tax: {
+      enabled: true,
+      rate: 0.1,
+      description: "消費税は価格に含まれています",
+    },
+    status: "configuring",
+    missingConfigs: ["物流配置未完成", "支付方式未配置"],
+  },
+  {
+    id: "au",
+    name: "澳洲站",
+    country: "Australia",
+    countryCode: "AU",
+    flag: "🇦🇺",
+    currency: "AUD",
+    currencySymbol: "A$",
+    language: "English",
+    languageCode: "en",
+    themeColor: "#10B981",
+    themeGradient: "from-emerald-500 to-teal-600",
+    logistics: {
+      enabled: true,
+      providers: ["Australia Post", "Sendle", "DHL"],
+      estimatedDays: "3-7 个工作日",
+      tips: "订单满 75 澳元免运费",
+    },
+    tax: {
+      enabled: false,
+      rate: 0,
+      description: "",
+    },
+    status: "active",
+    missingConfigs: ["税务信息待完善"],
+  },
+];
+
+export const getSiteById = (id: string): SiteConfig | undefined => {
+  return sites.find((site) => site.id === id);
+};
+
+export const getActiveSites = (): SiteConfig[] => {
+  return sites.filter((site) => site.status === "active");
+};
