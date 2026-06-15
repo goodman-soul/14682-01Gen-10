@@ -6,8 +6,7 @@ import { SiteConfig } from "@/types";
 
 export const SiteSelector: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { currentSiteId, sites, setCurrentSite, getCurrentSite } = useSiteStore();
-  const currentSite = getCurrentSite();
+  const { currentSiteId, sites, setCurrentSite, currentSite } = useSiteStore();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

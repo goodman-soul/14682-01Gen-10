@@ -22,7 +22,7 @@ import { OrderStatus } from "@/types";
 
 const Orders: React.FC = () => {
   const navigate = useNavigate();
-  const currentSite = useSiteStore((state) => state.getCurrentSite());
+  const currentSite = useSiteStore((state) => state.currentSite);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<OrderStatus | "all">("all");
   const [currentPage, setCurrentPage] = useState(1);

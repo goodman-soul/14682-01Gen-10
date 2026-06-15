@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { AlertTriangle, Settings, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ConfigIssue } from "@/types";
@@ -68,8 +69,8 @@ export const ConfigAlert: React.FC<ConfigAlertProps> = ({
                 />
                 <span className="flex-1">{issue.message}</span>
                 {issue.action && (
-                  <a
-                    href={issue.actionLink || "#"}
+                  <Link
+                    to={issue.actionLink || "/settings"}
                     className={cn(
                       "flex items-center gap-1 text-xs font-medium px-2 py-0.5 rounded-md transition-colors",
                       hasError
@@ -79,7 +80,7 @@ export const ConfigAlert: React.FC<ConfigAlertProps> = ({
                   >
                     <Settings className="w-3 h-3" />
                     {issue.action}
-                  </a>
+                  </Link>
                 )}
               </li>
             ))}

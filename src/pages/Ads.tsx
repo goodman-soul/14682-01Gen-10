@@ -22,7 +22,7 @@ import { getAdCampaignsBySite } from "@/data/ads";
 import { AdStatus } from "@/types";
 
 const Ads: React.FC = () => {
-  const currentSite = useSiteStore((state) => state.getCurrentSite());
+  const currentSite = useSiteStore((state) => state.currentSite);
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState<AdStatus | "all">("all");
 

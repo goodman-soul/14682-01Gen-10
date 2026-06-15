@@ -23,7 +23,7 @@ import { OrderStatus } from "@/types";
 const OrderDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const currentSite = useSiteStore((state) => state.getCurrentSite());
+  const currentSite = useSiteStore((state) => state.currentSite);
   const order = getOrderById(id || "");
 
   if (!currentSite || !order) {

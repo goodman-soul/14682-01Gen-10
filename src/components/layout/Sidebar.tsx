@@ -29,7 +29,7 @@ const bottomNavItems: NavItem[] = [
 ];
 
 export const Sidebar: React.FC = () => {
-  const currentSite = useSiteStore((state) => state.getCurrentSite());
+  const currentSite = useSiteStore((state) => state.currentSite);
 
   return (
     <aside className="fixed left-0 top-0 bottom-0 w-64 bg-slate-900/90 backdrop-blur-xl border-r border-slate-800/60 flex flex-col z-40">

@@ -14,9 +14,10 @@ import { Badge } from "@/components/ui/Badge";
 import { useSiteStore } from "@/store/useSiteStore";
 import { getInventoryBySite, getLowStockItems } from "@/data/inventory";
 import { formatRelativeTime } from "@/utils/date";
+import { formatCurrencySymbol } from "@/utils/currency";
 
 const Inventory: React.FC = () => {
-  const currentSite = useSiteStore((state) => state.getCurrentSite());
+  const currentSite = useSiteStore((state) => state.currentSite);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterLowStock, setFilterLowStock] = useState(false);
   const [sortBy, setSortBy] = useState<"name" | "quantity" | "available">("available");
@@ -97,7 +98,7 @@ const Inventory: React.FC = () => {
     },
     {
       label: "库存估值",
-      value: `¥${totalValue.toLocaleString()}`,
+      value: formatCurrencySymbol(totalValue, currentSite.currencySymbol),
       icon: <TrendingDown className="w-5 h-5" />,
       color: "text-purple-400",
       bgColor: "bg-purple-500/10",

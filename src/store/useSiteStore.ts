@@ -6,23 +6,25 @@ import { sites, getSiteById } from "@/data/sites";
 interface SiteState {
   currentSiteId: string;
   sites: SiteConfig[];
+  currentSite: SiteConfig | undefined;
   setCurrentSite: (siteId: string) => void;
-  getCurrentSite: () => SiteConfig | undefined;
   checkSiteConfig: (siteId: string) => { valid: boolean; issues: ConfigIssue[] };
   getSiteIssues: (siteId: string) => ConfigIssue[];
 }
+
+const findSiteById = (siteId: string, siteList: SiteConfig[]) => {
+  return siteList.find((s) => s.id === siteId);
+};
 
 export const useSiteStore = create<SiteState>()(
   persist(
     (set, get) => ({
       currentSiteId: "us",
       sites: sites,
+      currentSite: findSiteById("us", sites),
       setCurrentSite: (siteId: string) => {
-        set({ currentSiteId: siteId });
-      },
-      getCurrentSite: () => {
-        const { currentSiteId, sites } = get();
-        return sites.find((s) => s.id === currentSiteId);
+        const site = findSiteById(siteId, get().sites);
+        set({ currentSiteId: siteId, currentSite: site });
       },
       checkSiteConfig: (siteId: string) => {
         const site = getSiteById(siteId);
@@ -47,7 +49,7 @@ export const useSiteStore = create<SiteState>()(
             severity: "warning",
             message: "物流配置未完成，请配置物流服务商",
             action: "去配置物流",
-            actionLink: "/settings/logistics",
+            actionLink: "/settings",
           });
         }
 
@@ -57,7 +59,7 @@ export const useSiteStore = create<SiteState>()(
             severity: "warning",
             message: "税务信息待完善，可能影响订单税费计算",
             action: "完善税务信息",
-            actionLink: "/settings/tax",
+            actionLink: "/settings",
           });
         }
 

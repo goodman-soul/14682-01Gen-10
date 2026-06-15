@@ -4,7 +4,7 @@ import { SiteSelector } from "./SiteSelector";
 import { useSiteStore } from "@/store/useSiteStore";
 
 export const Header: React.FC = () => {
-  const currentSite = useSiteStore((state) => state.getCurrentSite());
+  const currentSite = useSiteStore((state) => state.currentSite);
 
   return (
     <header className="sticky top-0 z-30 bg-slate-900/80 backdrop-blur-xl border-b border-slate-800/60">
